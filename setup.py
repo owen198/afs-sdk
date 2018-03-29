@@ -5,12 +5,12 @@ from distutils.core import setup
 
 setup(
     name='helloworld',
-    version='2.0',
+    version='3.0',
     description='Simple module helloworld.say()',
     long_description=open('README').read(),
     author='Wang Diwen',
-    author_email='wangdiwen521@gmail.com',
-    url='https://github.com/wangdiwen',
+    author_email='cfleu198@gmail.com',
+    url='https://github.com/owen198',
     license='MIT',
     install_requires=['setuptools'],
     packages=['helloworld'],

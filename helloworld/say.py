@@ -2,4 +2,4 @@
 # encoding: utf-8
 
 def hi():
-    print 'Hello World.'
+    print ("Hello World.")
