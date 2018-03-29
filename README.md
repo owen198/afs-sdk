@@ -1,13 +1,12 @@
 
 # Installation
-pip install git+https://github.com/owen198/setup_py_helloworld.git
+pip3 install git+https://github.com/owen198/setup_py_helloworld.git
 
 # Remove
 
 ```
-# python
+# python3
 import helloworld
->>> from helloworld import say
->>> say.hi()
-Hello World.
+>>> from helloworld import board
+>>> board.setAccuracy()
 ```

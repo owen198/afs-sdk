@@ -2,4 +2,7 @@
 # encoding: utf-8
 
 def setAccuracy():
-    print ("Hello World.")
+
+    # call AFS API to set accuracy into models
+
+    print ("Set Accuracy into Board")
