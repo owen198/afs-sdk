@@ -8,7 +8,8 @@
 
 ```
 # python3
-import helloworld
->>> from helloworld import board
+>>> import helloworld
+>>> from afs import board
 >>> board.setAccuracy()
+Set Accuracy into Board
 ```
