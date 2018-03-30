@@ -2,5 +2,5 @@ This is README file for explain how to build your Python module package.
 
 Usage:
 
-from helloworld import say
-say.hi()
+from afs import board
+board.setAccuracy()
