@@ -4,7 +4,7 @@
 from distutils.core import setup
 
 setup(
-    name='helloworld',
+    name='afs',
     version='1.0.0',
     description='Simple module helloworld.say()',
     long_description=open('README').read(),
@@ -13,5 +13,5 @@ setup(
     url='https://github.com/owen198',
     license='MIT',
     install_requires=['setuptools'],
-    packages=['helloworld'],
+    packages=['afs'],
 )
