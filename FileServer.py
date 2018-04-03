@@ -3,11 +3,12 @@
 
 import os
 from flask import Flask, jsonify, request
+import subprocess
 
 app = Flask(__name__)
 
 STATUS_CODE = "statuscode"
-ALLOWED_EXTENSIONS = ['png', 'jpg', 'jpeg', 'gif']
+ALLOWED_EXTENSIONS = ['pkl']
 
 @app.route('/upload', methods=['POST'])
 def upload():
@@ -17,6 +18,10 @@ def upload():
         if file and allowed_file(file.filename):
 	    filename = os.path.join(file_path, file.filename)
             file.save(filename)
+
+            # ota packager
+            subprocess.call(["otapackager-cli", "-i", "./model.pkl", "-b", "model"])
+
             return jsonify({STATUS_CODE:200}), 200
     except ValueError:
         return jsonify({STATUS_CODE:211}), 400
