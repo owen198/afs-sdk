@@ -20,7 +20,7 @@ def upload():
             file.save(filename)
 
             # ota packager
-            subprocess.call(["otapackager-cli", "-i", "./model.pkl", "-b", "model"])
+            subprocess.call(["otapackager-cli", "-i", "./model", "-b", "model,pkl"])
 
             return jsonify({STATUS_CODE:200}), 200
     except ValueError:
