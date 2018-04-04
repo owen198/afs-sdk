@@ -80,8 +80,8 @@ def upload():
         if file and allowed_file(file.filename):
 
             #clean pervious files
-            clean_pervious(PATH_MODEL, ".pkl")
-            clean_pervious(PATH_MODEL, ".bat")
+            clean_pervious(PATH_MODEL, file.filename.rsplit('.', 1)[1])
+            #clean_pervious(PATH_MODEL, ".bat")
 
 	    filename = os.path.join(file_path, file.filename)
             file.save(filename)
