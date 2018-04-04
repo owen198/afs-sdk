@@ -7,11 +7,20 @@ Assuming that `model.pkl` and `model.bat` had been created by AFS Task (Trigger)
 
 ### Step2: Upload
 
-Use upload API to upload `model.pkl` and `model.bat` to OTA-Packager APP, this step will delete pervious files in `/root/afs-sdk/ota/model/`
+1. Use upload API to upload `model.pkl` and `model.bat` to OTA-Packager APP
+2. The uploaded file will be installed in `/root/afs-sdk/ota/model/`
+3. If pervious version exists in target folder, it will be removed.
 
 ### Step3: Pack (Call otapackager-cli)
 
+1. Use pack API to pack `model.pkl` and `model.bat` as `model.zip`
+2. otapackager-cli will be executed in CLI model, an output file be generated in `/root/afs-sdk/ota/`
+3. The out file has a random name, we rename it as `model.zip` and move it to `/root/afs-sdk/ota/model/`
+4. If pervious version exists in target folder, it will be removed.
+
 ### Step4: Download
+
+Use download API to download `model.zip`
 
 ## Call otapackager-cli
 
