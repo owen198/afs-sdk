@@ -19,11 +19,15 @@ NAME_BATCH = "model.bat"
 @app.route('/pack', methods=['GET'])
 def pack():
     try:
+        #TODO: clean pervious package
+
         #TODO: pack both pkl and bat
-        subprocess.call(["/afs-sdk/ota/otapackager-cli", 
-                                 "-i", "/afs-sdk/ota/model/", 
-                                 "-d", "/afs-sdk/", 
-                                 "-b", "model.pkl"])
+        subprocess.call([PATH_OTA+"otapackager-cli", 
+                                 "-i", PATH_MODEL, 
+                                 "-d", PATH_ROOT, 
+                                 "-b", NAME_MODEL, NAME_BATCH])
+        #TODO: rename
+
         return jsonify({STATUS_CODE:200}), 200
     except:
         return jsonify({STATUS_CODE:500}), 500
