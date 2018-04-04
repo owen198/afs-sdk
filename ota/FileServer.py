@@ -20,12 +20,13 @@ CMD_OTA = PATH_OTA + "otapackager-cli"
 @app.route('/pack', methods=['GET'])
 def pack():
     try:
-        #TODO: clean pervious package
+        # clean pervious package
         clean_pervious(PATH_MODEL, ".zip")
         clean_pervious(PATH_OTA, ".zip")
         clean_pervious(PATH_ROOT, ".zip")
 
-        if !os.path.isfile("/root/afs-sdk/ota/model/model.bat"):
+        # chech if bat and pkl file exist or not
+        if !os.path.isfile(PATH_MODEL + NAME_BATCH):
             return jsonify({STATUS_CODE:211}), 200
         if !os.path.isfile(PATH_MODEL + NAME_BATCH):
             return jsonify({STATUS_CODE:212}), 200
