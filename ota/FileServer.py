@@ -14,6 +14,7 @@ PATH_ROOT = "/root/afs-sdk/"
 PATH_OTA = PATH_ROOT + "ota/"
 PATH_MODEL = PATH_OTA + "model/"
 NAME_MODEL = "model.zip"
+NAME_BATCH = "model.bat"
 
 @app.route('/pack', methods=['GET'])
 def pack():
