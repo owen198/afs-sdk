@@ -3,13 +3,17 @@
 
 ### Step1: Create
 
+Assuming that `model.pkl` and `model.bat` had been created by AFS Task (Trigger)
+
 ### Step2: Upload
+
+Use upload API to upload `model.pkl` and `model.bat` to OTA-Packager APP, this step will delete pervious files in `/root/afs-sdk/ota/model/`
 
 ### Step3: Pack (Call otapackager-cli)
 
 ### Step4: Download
 
-# Call otapackager-cli
+## Call otapackager-cli
 
 ### Request
 
