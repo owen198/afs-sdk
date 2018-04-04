@@ -13,7 +13,8 @@ ALLOWED_EXTENSIONS = ['pkl', 'bat']
 PATH_ROOT = "/root/afs-sdk/"
 PATH_OTA = PATH_ROOT + "ota/"
 PATH_MODEL = PATH_OTA + "model/"
-NAME_MODEL = "model.zip"
+NAME_PACK = "model.zip"
+NAME_MODEL = "model.pkl"
 NAME_BATCH = "model.bat"
 CMD_OTA = PATH_OTA + "otapackager-cli"
 
@@ -28,14 +29,14 @@ def pack():
         # chech if bat and pkl file exist or not
         if not os.path.isfile(PATH_MODEL + NAME_BATCH):
             return jsonify({STATUS_CODE:211}), 200
-        if not os.path.isfile(PATH_MODEL + NAME_BATCH):
+        if not os.path.isfile(PATH_MODEL + NAME_MODEL):
             return jsonify({STATUS_CODE:212}), 200
 
         #TODO: pack both pkl and bat
         subprocess.call([CMD_OTA, 
                                  "-i", PATH_MODEL, 
                                  "-d", PATH_OTA, 
-                                 "-b", "model.zip", "model.bat"])
+                                 "-b", NAME_MODEL, NAME_BATCH])
         #TODO: rename
 
         return jsonify({STATUS_CODE:200}), 200
@@ -47,8 +48,8 @@ def pack():
 def download():
     try:
         # if model.zip exists, return file to client
-        if os.path.isfile(PATH_MODEL+NAME_MODEL):
-            return send_file(PATH_MODEL+NAME_MODEL, attachment_filename=NAME_MODEL)
+        if os.path.isfile(PATH_MODEL+NAME_PACK):
+            return send_file(PATH_MODEL+NAME_PACK, attachment_filename=NAME_PACK)
         else:
             # file does not exists
             return jsonify({STATUS_CODE:211}), 400
