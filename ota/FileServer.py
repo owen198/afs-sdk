@@ -32,14 +32,16 @@ def pack():
         if not os.path.isfile(PATH_MODEL + NAME_MODEL):
             return jsonify({STATUS_CODE:212}), 200
 
-        #TODO: pack both pkl and bat
+        # pack both pkl and bat
         subprocess.call([CMD_OTA, 
                                  "-i", PATH_MODEL, 
                                  "-d", PATH_OTA, 
                                  "-b", NAME_MODEL, NAME_BATCH])
         #TODO: rename
+        #os.rename("model-1.zip", "model.zip", src_dir_fd=PATH_OTA, dst_dir_fd=PATH_MODEL)
 
         return jsonify({STATUS_CODE:200}), 200
+    #except Exception, e: print e
     except:
         return jsonify({STATUS_CODE:500}), 500
 
