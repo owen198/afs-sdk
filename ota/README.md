@@ -7,6 +7,12 @@
 
 `GET /pack/`
 
+|Status Code           | Description                                                         |
+|----------------------|---------------------------------------------------------------------|
+|200                   | Package exists and can be downloaded                                |
+|211                   | `model.bat` does not exist                                            |
+|212                   | `model.pkl` does not exist                                            |
+
 ## Download package
 
 ### Request

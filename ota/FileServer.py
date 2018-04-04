@@ -25,6 +25,11 @@ def pack():
         clean_pervious(PATH_OTA, ".zip")
         clean_pervious(PATH_ROOT, ".zip")
 
+        if os.path.isfile("/root/afs-sdk/ota/model/model.bat"):
+            return jsonify({STATUS_CODE:211}), 200
+        if os.path.isfile(PATH_MODEL + NAME_BATCH):
+            return jsonify({STATUS_CODE:212}), 200
+
         #TODO: pack both pkl and bat
         subprocess.call([CMD_OTA, 
                                  "-i", PATH_MODEL, 
