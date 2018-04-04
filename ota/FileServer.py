@@ -12,9 +12,10 @@ ALLOWED_EXTENSIONS = ['pkl', 'bat']
 
 
 
-@app.route('/pack', methods['GET'])
-def upload():
+@app.route('/pack', methods=['GET'])
+def pack():
     try:
+        #TODO: pack both pkl and bat
         subprocess.call(["/afs-sdk/ota/otapackager-cli", 
                                  "-i", "/afs-sdk/ota/model/", 
                                  "-d", "/afs-sdk/", 
@@ -24,6 +25,14 @@ def upload():
         return jsonify({STATUS_CODE:500}), 500
 
 
+@app.route('/download', methods=['GET'])
+def download():
+    try:
+        #TODO: put a file in /afs-sdk/ota/model/ and download it
+        return jsonify({STATUS_CODE:200}), 200
+    except:
+        return jsonify({STATUS_CODE:500}), 500
+
 
 
 @app.route('/upload', methods=['POST'])
@@ -32,6 +41,8 @@ def upload():
         file = request.files['file']
         file_path = request.form['file_path']  
         if file and allowed_file(file.filename):
+
+            #TODO: clean pervious files
 	    filename = os.path.join(file_path, file.filename)
             file.save(filename)
 
