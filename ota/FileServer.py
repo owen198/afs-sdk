@@ -8,7 +8,23 @@ import subprocess
 app = Flask(__name__)
 
 STATUS_CODE = "statuscode"
-ALLOWED_EXTENSIONS = ['pkl']
+ALLOWED_EXTENSIONS = ['pkl', 'bat']
+
+
+
+@app.route('/pack', methods['GET'])
+def upload():
+    try:
+        subprocess.call(["/afs-sdk/ota/otapackager-cli", 
+                                 "-i", "/afs-sdk/ota/model/", 
+                                 "-d", "/afs-sdk/", 
+                                 "-b", "model.pkl"])
+        return jsonify({STATUS_CODE:200}), 200
+    except:
+        return jsonify({STATUS_CODE:500}), 500
+
+
+
 
 @app.route('/upload', methods=['POST'])
 def upload():
@@ -18,10 +34,6 @@ def upload():
         if file and allowed_file(file.filename):
 	    filename = os.path.join(file_path, file.filename)
             file.save(filename)
-
-            # ota packager
-            # /afs-sdk/otapackager-cli -i /afs-sdk/model/ -d /root/ -b model.pkl
-            subprocess.call(["/afs-sdk/ota/otapackager-cli", "-i", "/afs-sdk/ota/model/", "-d", "/afs-sdk/", "-b", "model.pkl"])
 
             return jsonify({STATUS_CODE:200}), 200
     except ValueError:
