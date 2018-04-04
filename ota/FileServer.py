@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import os
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_file
 import subprocess
 
 app = Flask(__name__)
@@ -10,7 +10,8 @@ app = Flask(__name__)
 STATUS_CODE = "statuscode"
 ALLOWED_EXTENSIONS = ['pkl', 'bat']
 
-
+PATH_MODEL="/root/afs-sdk/ota/model/"
+NAME_MODEL="model.zip"
 
 @app.route('/pack', methods=['GET'])
 def pack():
@@ -28,8 +29,12 @@ def pack():
 @app.route('/download', methods=['GET'])
 def download():
     try:
-        #TODO: put a file in /afs-sdk/ota/model/ and download it
-        return jsonify({STATUS_CODE:200}), 200
+
+        if os.path.isfile(PATH_MODEL+NAME_MODEL):
+            return send_file(PATH_MODEL+NAME_MODEL, attachment_filename=NAME_MODEL)
+        else:
+            # file does not exists
+            return jsonify({STATUS_CODE:211}), 400
     except:
         return jsonify({STATUS_CODE:500}), 500
 

@@ -13,6 +13,13 @@
 
 `GET /download/`
 
+|Status Code           | Description                                                         |
+|----------------------|---------------------------------------------------------------------|
+|200                   | Package exists and can be downloaded                                |
+|211                   | Package does not exists                                             |
+|500                   | flask.send_file() execptions                                        |
+
+
 ## Upload pkl or bat files for package 
 
 ### Request
