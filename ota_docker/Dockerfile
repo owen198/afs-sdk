@@ -17,4 +17,6 @@ RUN sudo apt-get install software-properties-common -y
 RUN sudo apt-get install python-pip -y
 RUN pip install flask
 
+RUN export PYTHONIOENCODING=UTF-8
+
 EXPOSE 80:80

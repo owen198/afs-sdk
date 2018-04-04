@@ -35,15 +35,17 @@ def pack():
         # pack both pkl and bat
         subprocess.call([CMD_OTA, 
                                  "-i", PATH_MODEL, 
-                                 "-d", PATH_OTA, 
+                                 "-d", PATH_OTA,
                                  "-b", NAME_MODEL, NAME_BATCH])
-        #TODO: rename
-        #os.rename("model-1.zip", "model.zip", src_dir_fd=PATH_OTA, dst_dir_fd=PATH_MODEL)
+        # rename
+        os.rename("model-1.zip", NAME_PACK, src_dir_fd=PATH_OTA, dst_dir_fd=PATH_MODEL)
 
         return jsonify({STATUS_CODE:200}), 200
-    #except Exception, e: print e
-    except:
-        return jsonify({STATUS_CODE:500}), 500
+    except Exception, e: 
+         print e
+         return jsonify({STATUS_CODE:500}), 500
+    #except:
+    #    return jsonify({STATUS_CODE:500}), 500
 
 
 @app.route('/download', methods=['GET'])
