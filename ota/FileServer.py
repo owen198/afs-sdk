@@ -15,17 +15,21 @@ PATH_OTA = PATH_ROOT + "ota/"
 PATH_MODEL = PATH_OTA + "model/"
 NAME_MODEL = "model.zip"
 NAME_BATCH = "model.bat"
+CMD_OTA = PATH_OTA + "otapackager-cli"
 
 @app.route('/pack', methods=['GET'])
 def pack():
     try:
         #TODO: clean pervious package
+        clean_pervious(PATH_MODEL, ".zip")
+        clean_pervious(PATH_OTA, ".zip")
+        clean_pervious(PATH_ROOT, ".zip")
 
         #TODO: pack both pkl and bat
-        subprocess.call([PATH_OTA+"otapackager-cli", 
+        subprocess.call([CMD_OTA, 
                                  "-i", PATH_MODEL, 
-                                 "-d", PATH_ROOT, 
-                                 "-b", NAME_MODEL, NAME_BATCH])
+                                 "-d", PATH_OTA, 
+                                 "-b", "model.zip", "model.bat"])
         #TODO: rename
 
         return jsonify({STATUS_CODE:200}), 200
