@@ -44,6 +44,6 @@
 
 
 ## CloudFoundry push commend
-`cf push owen_otahub_test_u32 --docker-image cfleu198/ubuntu32 -c "python /afs-sdk/ota/FileServer.py" -k 2g -m 2g`
+`cf push owen_otahub_test_u32 --docker-image cfleu198/ubuntu32 -c "python /root/afs-sdk/ota/FileServer.py" -k 2g -m 2g`
 
 ## DockerHub Push commend

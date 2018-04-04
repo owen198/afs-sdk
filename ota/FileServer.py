@@ -26,9 +26,9 @@ def pack():
         clean_pervious(PATH_ROOT, ".zip")
 
         # chech if bat and pkl file exist or not
-        if !os.path.isfile(PATH_MODEL + NAME_BATCH):
+        if not os.path.isfile(PATH_MODEL + NAME_BATCH):
             return jsonify({STATUS_CODE:211}), 200
-        if !os.path.isfile(PATH_MODEL + NAME_BATCH):
+        if not os.path.isfile(PATH_MODEL + NAME_BATCH):
             return jsonify({STATUS_CODE:212}), 200
 
         #TODO: pack both pkl and bat
