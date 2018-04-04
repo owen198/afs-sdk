@@ -1,13 +1,13 @@
 
 ## Usage Steps
 
-# Step1: Create
+### Step1: Create
 
-# Step2: Upload
+### Step2: Upload
 
-# Step3: Pack
+### Step3: Pack (Call otapackager-cli)
 
-# Step4: Download
+### Step4: Download
 
 # Call otapackager-cli
 
