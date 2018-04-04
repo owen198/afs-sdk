@@ -33,19 +33,26 @@ def pack():
             return jsonify({STATUS_CODE:212}), 200
 
         # pack both pkl and bat
+        # cannot setup equal input(-i) and dest(-d), therefore setup -d as PATH_OTA
+        # will need move output file
         subprocess.call([CMD_OTA, 
                                  "-i", PATH_MODEL, 
                                  "-d", PATH_OTA,
                                  "-b", NAME_MODEL, NAME_BATCH])
-        # rename
-        os.rename("model-1.zip", NAME_PACK, src_dir_fd=PATH_OTA, dst_dir_fd=PATH_MODEL)
+
+        # move file from PATH_OTA to PATH_MODEL
+        # remove ramdon number in file name
+        test = os.listdir(PATH_OTA)
+        for item in test:
+            if item.endswith(".zip"):
+                subprocess.call(["mv", PATH_OTA+item, PATH_MODEL+NAME_PACK])
 
         return jsonify({STATUS_CODE:200}), 200
-    except Exception, e: 
-         print e
-         return jsonify({STATUS_CODE:500}), 500
-    #except:
-    #    return jsonify({STATUS_CODE:500}), 500
+    #except Exception, e: 
+    #     print e
+    #     return jsonify({STATUS_CODE:500}), 500
+    except:
+        return jsonify({STATUS_CODE:500}), 500
 
 
 @app.route('/download', methods=['GET'])
