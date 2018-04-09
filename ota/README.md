@@ -20,7 +20,8 @@ Assuming that `model.pkl` and `model.bat` had been created by AFS Task (Trigger)
 
 ### Step4: Download
 
-Use download API to download `model.zip`
+1. Use download API to download `model.zip`
+2. Download zip file will be deleted after requests
 
 ## Call otapackager-cli
 

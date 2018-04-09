@@ -10,3 +10,4 @@ curl -X POST -F file=@model.bat http://$HOST/upload
 
 curl http://$HOST/pack
 curl http://$HOST/download
+curl http://$HOST/download

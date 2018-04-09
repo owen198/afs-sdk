@@ -38,7 +38,7 @@ def pack():
         subprocess.call([CMD_OTA, 
                                  "-i", PATH_MODEL, 
                                  "-d", PATH_OTA,
-                                 "-b", NAME_MODEL, NAME_BATCH])
+                                 "-b", NAME_BATCH])
 
         # move file from PATH_OTA to PATH_MODEL
         # remove ramdon number in file name
@@ -66,7 +66,8 @@ def download():
             return jsonify({STATUS_CODE:211}), 400
     except:
         return jsonify({STATUS_CODE:500}), 500
-
+    finally:
+        clean_pervious(PATH_MODEL, ".zip")
 
 
 @app.route('/upload', methods=['POST'])
