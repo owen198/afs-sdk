@@ -41,11 +41,12 @@ def pack():
                                  "-b", NAME_BATCH])
 
         # move file from PATH_OTA to PATH_MODEL
-        # remove ramdon number in file name
         test = os.listdir(PATH_OTA)
         for item in test:
             if item.endswith(".zip"):
-                subprocess.call(["mv", PATH_OTA+item, PATH_MODEL+NAME_PACK])
+                # remove ramdon number in file name
+                #subprocess.call(["mv", PATH_OTA+item, PATH_MODEL+NAME_PACK])
+                subprocess.call(["mv", PATH_OTA+item, PATH_MODEL+item])
 
         return jsonify({STATUS_CODE:200}), 200
     #except Exception, e: 
