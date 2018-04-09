@@ -67,7 +67,8 @@ def download():
 
         # if model.zip exists, return file to client
         if os.path.isfile(PATH_MODEL+filename):
-            return send_file(PATH_MODEL+filename, attachment_filename=filename)
+            #return send_file(PATH_MODEL+filename, attachment_filename=None)
+            return send_file(PATH_MODEL+filename, as_attachment=True)
 
         else:
             # file does not exists
@@ -75,6 +76,7 @@ def download():
     except:
         return jsonify({STATUS_CODE:500}), 500
     finally:
+        # delete file after download finished
         clean_pervious(PATH_MODEL, ".zip")
 
 
