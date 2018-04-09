@@ -59,9 +59,16 @@ def pack():
 @app.route('/download', methods=['GET'])
 def download():
     try:
+        # get random file name
+        test = os.listdir(PATH_MODEL)
+        for item in test:
+            if item.endswith(".zip"):
+                filename = item
+
         # if model.zip exists, return file to client
-        if os.path.isfile(PATH_MODEL+NAME_PACK):
-            return send_file(PATH_MODEL+NAME_PACK, attachment_filename=NAME_PACK)
+        if os.path.isfile(PATH_MODEL+filename):
+            return send_file(PATH_MODEL+filename, attachment_filename=filename)
+
         else:
             # file does not exists
             return jsonify({STATUS_CODE:211}), 400
