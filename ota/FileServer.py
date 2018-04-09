@@ -17,6 +17,7 @@ NAME_PACK = "model.zip"
 NAME_MODEL = "model.pkl"
 NAME_BATCH = "model.bat"
 CMD_OTA = PATH_OTA + "otapackager-cli"
+ALLOWED_UPLOADED = [NAME_MODEL, NAME_BATCH]
 
 @app.route('/pack', methods=['GET'])
 def pack():
@@ -60,6 +61,7 @@ def pack():
 def download():
     try:
         # get random file name
+        filename = NAME_PACK
         test = os.listdir(PATH_MODEL)
         for item in test:
             if item.endswith(".zip"):
@@ -73,8 +75,13 @@ def download():
         else:
             # file does not exists
             return jsonify({STATUS_CODE:211}), 400
-    except:
-        return jsonify({STATUS_CODE:500}), 500
+
+    except Exception, e: 
+         print e
+         return jsonify({STATUS_CODE:500}), 500
+
+    #except:
+    #    return jsonify({STATUS_CODE:500}), 500
     finally:
         # delete file after download finished
         clean_pervious(PATH_MODEL, ".zip")
@@ -84,7 +91,6 @@ def download():
 def upload():
     try:
         file = request.files['file']
-        #file_path = request.form['file_path'] 
         file_path = PATH_MODEL
 
         # if file extension is allowable, clean pervious files and upload to PATH_MODEL 
@@ -104,12 +110,13 @@ def upload():
         return jsonify({STATUS_CODE:211}), 400
     except IOError:
         return jsonify({STATUS_CODE:212}), 400
-    #except Exception, e: print e
-    except :
-	return jsonify({STATUS_CODE:500}), 500
+    except Exception, e: print e
+    #except :
+#	return jsonify({STATUS_CODE:500}), 500
 
 def allowed_file(filename):
-        return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+        #return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+        return '.' in filename in ALLOWED_UPLOADED
 
 def clean_pervious(dir_name=PATH_ROOT, extensions=".just_give_one"):
     test = os.listdir(dir_name)
