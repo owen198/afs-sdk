@@ -17,7 +17,8 @@ PATH_OTA = os.path.join(PATH_ROOT, 'ota')
 PATH_MODEL = os.path.join(PATH_OTA, 'model')
 
 if not os.path.isdir(PATH_MODEL):
-    os.makedirs(PATH_MODEL, exist_ok=True)
+    #os.makedirs(PATH_MODEL, exist_ok=True)
+    os.makedirs(PATH_MODEL)
 
 NAME_PACK = 'model.zip'
 NAME_MODEL = 'model.pkl'
