@@ -19,4 +19,4 @@ RUN pip install flask
 
 RUN export PYTHONIOENCODING=UTF-8
 
-EXPOSE 80:80
+EXPOSE 80:8088
