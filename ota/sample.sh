@@ -2,7 +2,8 @@
 
 echo "200, 200, 213, 213, 200, 211"
 
-HOST=owenotahubtestu32.iii-cflab.com
+HOST=owenotahubtestu32.iii-arfa.com
+#HOST=owenota.wise-paas.com
 
 cp FileServer.py model.pkl
 cp FileServer.py model.bat
