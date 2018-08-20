@@ -1,0 +1,6 @@
+---
+applications:
+- name: ota_api
+  memory: 512M
+  instances: 1
+  buildpack: python_buildpack_offline
